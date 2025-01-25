@@ -1,2 +1,8 @@
 appsettings.json
 appsettings.Development.json
+**/bin/Debug/**/appsettings.json
+**/bin/Release/**/appsettings.json
+
+## Directorios de compilación
+bin/
+obj/
