@@ -161,3 +161,7 @@ D:\Repositorios\FM-API\apisiase\obj\Debug\net8.0\refint\apisiase.dll
 D:\Repositorios\FM-API\apisiase\obj\Debug\net8.0\apisiase.pdb
 D:\Repositorios\FM-API\apisiase\obj\Debug\net8.0\apisiase.genruntimeconfig.cache
 D:\Repositorios\FM-API\apisiase\obj\Debug\net8.0\ref\apisiase.dll
+D:\Repositorios\FM-API\apisiase\bin\Debug\net8.0\Azure.Storage.Blobs.dll
+D:\Repositorios\FM-API\apisiase\bin\Debug\net8.0\Azure.Storage.Common.dll
+D:\Repositorios\FM-API\apisiase\bin\Debug\net8.0\System.ClientModel.dll
+D:\Repositorios\FM-API\apisiase\bin\Debug\net8.0\System.IO.Hashing.dll
