@@ -17,6 +17,7 @@ namespace BusinessLogic.Persistence
         public DbSet<Materia> Materia { get; set; }
         public DbSet<Profesor> Profesor { get; set; }
         public DbSet<Carrera> Carrera { get; set; }
+        public DbSet<BlobFile> Files {get; set;}
 
         public DbSet<ComentariosMaterias> ComentariosMaterias { get; set; }
 
