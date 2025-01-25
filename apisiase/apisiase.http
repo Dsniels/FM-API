@@ -1,0 +1,6 @@
+@apisiase_HostAddress = http://localhost:5023
+
+GET {{apisiase_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

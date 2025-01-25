@@ -1,0 +1,31 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+
+namespace apisiase;
+
+public static class Extension
+{
+public static ValidationProblemDetails ToValidationProblemDetails(this List<ValidationResult> validationResults)
+    {
+        var problemDetails = new ValidationProblemDetails();
+
+        foreach (var validationResult in validationResults)
+        {
+            foreach (var memberName in validationResult.MemberNames)
+            {
+                // skipcq: CS-R1105
+                if (problemDetails.Errors.ContainsKey(memberName))
+                {
+                    problemDetails.Errors[memberName] = problemDetails.Errors[memberName].Concat([validationResult.ErrorMessage]).ToArray()!;
+                }
+                else
+                {
+                    problemDetails.Errors[memberName] = new List<string> { validationResult.ErrorMessage! }.ToArray();
+                }
+            }
+        }
+
+        return problemDetails;
+    }
+}
