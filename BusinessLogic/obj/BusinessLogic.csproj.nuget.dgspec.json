@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repositorios\\FM-api\\BusinessLogic\\BusinessLogic.csproj": {}
+    "D:\\Repositorios\\FM-API\\BusinessLogic\\BusinessLogic.csproj": {}
   },
   "projects": {
-    "D:\\Repositorios\\FM-api\\BusinessLogic\\BusinessLogic.csproj": {
+    "D:\\Repositorios\\FM-API\\BusinessLogic\\BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositorios\\FM-api\\BusinessLogic\\BusinessLogic.csproj",
+        "projectUniqueName": "D:\\Repositorios\\FM-API\\BusinessLogic\\BusinessLogic.csproj",
         "projectName": "BusinessLogic",
-        "projectPath": "D:\\Repositorios\\FM-api\\BusinessLogic\\BusinessLogic.csproj",
+        "projectPath": "D:\\Repositorios\\FM-API\\BusinessLogic\\BusinessLogic.csproj",
         "packagesPath": "C:\\Users\\Dsnie\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositorios\\FM-api\\BusinessLogic\\obj\\",
+        "outputPath": "D:\\Repositorios\\FM-API\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,8 +33,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Repositorios\\FM-api\\Core\\Core.csproj": {
-                "projectPath": "D:\\Repositorios\\FM-api\\Core\\Core.csproj"
+              "D:\\Repositorios\\FM-API\\Core\\Core.csproj": {
+                "projectPath": "D:\\Repositorios\\FM-API\\Core\\Core.csproj"
               }
             }
           }
@@ -124,14 +124,14 @@
         }
       }
     },
-    "D:\\Repositorios\\FM-api\\Core\\Core.csproj": {
+    "D:\\Repositorios\\FM-API\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repositorios\\FM-api\\Core\\Core.csproj",
+        "projectUniqueName": "D:\\Repositorios\\FM-API\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "D:\\Repositorios\\FM-api\\Core\\Core.csproj",
+        "projectPath": "D:\\Repositorios\\FM-API\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Dsnie\\.nuget\\packages\\",
-        "outputPath": "D:\\Repositorios\\FM-api\\Core\\obj\\",
+        "outputPath": "D:\\Repositorios\\FM-API\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

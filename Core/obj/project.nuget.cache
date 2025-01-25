@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/Ce+flfUR3Y=",
+  "dgSpecHash": "HKkXXghUIQE=",
   "success": true,
-  "projectFilePath": "D:\\Repositorios\\FM-api\\Core\\Core.csproj",
+  "projectFilePath": "D:\\Repositorios\\FM-API\\Core\\Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dsnie\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.3.0\\microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",
     "C:\\Users\\Dsnie\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.3.0\\microsoft.aspnetcore.authorization.2.3.0.nupkg.sha512",
@@ -52,12 +52,5 @@
     "C:\\Users\\Dsnie\\.nuget\\packages\\system.text.json\\9.0.1\\system.text.json.9.0.1.nupkg.sha512",
     "C:\\Users\\Dsnie\\.nuget\\packages\\system.threading.channels\\8.0.0\\system.threading.channels.8.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\Repositorios\\FM-api\\Core\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

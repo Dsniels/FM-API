@@ -5297,11 +5297,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Repositorios\\FM-api\\BusinessLogic\\BusinessLogic.csproj",
+      "projectUniqueName": "D:\\Repositorios\\FM-API\\BusinessLogic\\BusinessLogic.csproj",
       "projectName": "BusinessLogic",
-      "projectPath": "D:\\Repositorios\\FM-api\\BusinessLogic\\BusinessLogic.csproj",
+      "projectPath": "D:\\Repositorios\\FM-API\\BusinessLogic\\BusinessLogic.csproj",
       "packagesPath": "C:\\Users\\Dsnie\\.nuget\\packages\\",
-      "outputPath": "D:\\Repositorios\\FM-api\\BusinessLogic\\obj\\",
+      "outputPath": "D:\\Repositorios\\FM-API\\BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5323,8 +5323,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Repositorios\\FM-api\\Core\\Core.csproj": {
-              "projectPath": "D:\\Repositorios\\FM-api\\Core\\Core.csproj"
+            "D:\\Repositorios\\FM-API\\Core\\Core.csproj": {
+              "projectPath": "D:\\Repositorios\\FM-API\\Core\\Core.csproj"
             }
           }
         }
@@ -5413,13 +5413,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\Repositorios\\FM-api\\BusinessLogic\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
