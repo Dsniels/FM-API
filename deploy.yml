@@ -1,0 +1,123 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sql-pvc
+  labels:
+    app: sql-server
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sql-deployment
+spec:
+  selector:
+    matchLabels:
+      app: sql-server
+  strategy:
+    type : Recreate
+  template:
+    metadata:
+      labels:
+        app: sql-server
+    spec:
+      containers: 
+      - name: sql-server
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        ports:
+          - containerPort: 1433
+        volumeMounts:
+        - name: sql-persistence-storage
+          mountPath: /var/lib/mssql
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "300m"
+          limits:
+            memory : "1.5Gi"
+            cpu: "500m"
+        env:
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: SA_PASSWORD
+            value: "Contraseñña1"
+          - name: MSSQL_PID
+            value: "Express"
+      volumes:
+      - name: sql-persistence-storage
+        persistentVolumeClaim: 
+          claimName: sql-pvc
+---
+
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: sql-service
+  labels:
+    app: sql-server
+spec:
+  type: NodePort
+  ports:
+  - port: 1433
+    protocol: TCP
+    targetPort: 1433
+  selector:
+    app: sql-server
+
+---
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fm-api-deployment
+spec:
+  selector:
+    matchLabels:
+      app: fm-api
+  template:
+    metadata:
+      labels:
+        app:  fm-api
+    spec:
+      containers:
+      - name: fm-api-container
+        image:  danielszr/fm-api
+        ports:
+          - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "600m"
+        env:
+          - name: HOST_DB
+            value: "sql-service"
+          - name: ConnectionStrings__DefaultConnection
+            value: "Server=sql-service;Database=E10Siase;User Id=sa;Password=Contraseñña1;TrustServerCertificate=True"
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fm-api-service
+  labels:
+    run:  fm-api-service
+spec:
+  selector:
+    app:  fm-api
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  type: LoadBalancer
