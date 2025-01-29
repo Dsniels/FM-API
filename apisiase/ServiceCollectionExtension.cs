@@ -11,7 +11,7 @@ namespace apisiase
         public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            var blobConnectionString = configuration.GetValue<string>("BlobConnection");
+            var blobConnectionString = configuration.GetConnectionString("BlobConnection");
             System.Console.WriteLine(connectionString);
             services.AddDbContext<SiaseDbContext>(opt => opt.UseSqlServer(connectionString));
             services.AddProblemDetails();

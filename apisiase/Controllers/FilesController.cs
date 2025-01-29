@@ -27,6 +27,17 @@ namespace apisiase.Controllers
 
         }
 
+        [HttpGet("GetByID/{id}")]
+        public async Task<ActionResult> GetByID(int id)
+        {
+            var result = await _genericRepository.getByID(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
 
         [HttpPost("Add")]
         public async Task<ActionResult> UploadFile(string tag, string title)
@@ -38,7 +49,7 @@ namespace apisiase.Controllers
             }
 
             var result = await _blobRepository.UploadFile(
-                "firstContainer",
+                "blobcontainer",
                 file.OpenReadStream(),
                 file.ContentType,
                 file.FileName
@@ -63,7 +74,7 @@ namespace apisiase.Controllers
                 return BadRequest();
             }
 
-            return Ok(record);
+            return Ok(blob);
 
         }
 
