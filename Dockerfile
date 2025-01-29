@@ -21,5 +21,6 @@ COPY --from=build /app/Out .
 EXPOSE 80
 EXPOSE 443
 
+ENV HOST_DB=localhost
 
 ENTRYPOINT [ "dotnet", "apisiase.dll" ]
