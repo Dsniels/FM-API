@@ -9,10 +9,10 @@ namespace Core.Interfaces
 {
     public interface IGenericSecurityRepository<T> where T : IdentityUser
     {
-        Task<T> GetByIDAsync(int id);
+        Task<T> GetByID(int id);
         Task<IReadOnlyCollection<T>> GetAllAsync();
-        Task<int> add(T entity);
-        Task<int> update(T entity);
+        Task<int> Add(T entity);
+        Task<int> Update(T entity);
 
     }
 }
