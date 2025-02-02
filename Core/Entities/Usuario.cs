@@ -13,7 +13,14 @@ namespace Core.Entities
         public string Nombre { get; set; }
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }
+        public int Matricula {get; set;}
+        public int HorarioID{get;set;}
+        public bool Alumno {get; set;}
+        public bool Admin {get; set;}
+        
 
-
+        
     }
+
+    
 }
