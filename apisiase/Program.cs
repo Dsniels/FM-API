@@ -1,8 +1,10 @@
 using apisiase;
 using apisiase.Middleware;
+using BusinessLogic.Data;
 using BusinessLogic.Logic;
 using BusinessLogic.Persistence;
 using Core.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -25,8 +27,17 @@ builder.Services.AddCors(opt =>
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<SiaseDbContext>();
-    context.Database.Migrate();
+    var service = scope.ServiceProvider;
+    var context = service.GetRequiredService<SiaseDbContext>();
+    await context.Database.MigrateAsync();
+
+
+    var IdentityContext = service.GetRequiredService<SeguridadDbContext>();
+    var userManager = service.GetRequiredService<UserManager<Usuario>>();
+    var roleManager = service.GetRequiredService<RoleManager<IdentityRole>>();
+    await IdentityContext.Database.MigrateAsync();
+    await SecurityDataSeed.SeedUserAsync(userManager,roleManager);
+
 }
 
 app.UseSwagger();
@@ -35,6 +46,8 @@ app.UseCors();
 app.UseMiddleware<ExceptionMiddleware>();
 app.MapControllers();
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapHub<ChatHub>("/GlobalChat");
 app.UseHttpsRedirection();
 app.Run();
