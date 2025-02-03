@@ -10,7 +10,7 @@ namespace Core.Interfaces
     public interface IGenericSecurityRepository<T> where T : IdentityUser
     {
         Task<T> GetByID(int id);
-        Task<IReadOnlyCollection<T>> GetAllAsync();
+        Task<IReadOnlyList<T>> GetAllAsync();
         Task<int> Add(T entity);
         Task<int> Update(T entity);
 
