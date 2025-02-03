@@ -33,9 +33,11 @@ using (var scope = app.Services.CreateScope())
 
 
     var IdentityContext = service.GetRequiredService<SeguridadDbContext>();
+
+
     var userManager = service.GetRequiredService<UserManager<Usuario>>();
     var roleManager = service.GetRequiredService<RoleManager<IdentityRole>>();
-    await IdentityContext.Database.MigrateAsync();
+    await IdentityContext.Database.MigrateAsync(); 
     await SecurityDataSeed.SeedUserAsync(userManager,roleManager);
 
 }
@@ -43,11 +45,12 @@ using (var scope = app.Services.CreateScope())
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseCors();
-app.UseMiddleware<ExceptionMiddleware>();
-app.MapControllers();
 app.UseRouting();
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllers();
 app.MapHub<ChatHub>("/GlobalChat");
 app.UseHttpsRedirection();
 app.Run();

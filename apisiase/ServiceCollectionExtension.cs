@@ -31,11 +31,13 @@ namespace apisiase
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IGenericSecurityRepository<>), typeof(GenericSecurityRepository<>));
             services.AddTransient<IMateriasRepository, MateriasRepository>();
+            services.AddScoped<ITokenService, TokenService>();
             services.AddTransient<IRentaRepository, RentaReporitory>();
 
 
 
 
+            
             var builder = services.AddIdentityCore<Usuario>();
             builder = new IdentityBuilder(builder.UserType, builder.Services);
             builder.AddRoles<IdentityRole>();
@@ -51,7 +53,7 @@ namespace apisiase
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Token:key"])),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Token:Key"])),
                     ValidIssuer = configuration["Token:Issuer"],
                     ValidateIssuer = true,
                     ValidateAudience = false
