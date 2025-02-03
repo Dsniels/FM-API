@@ -13,10 +13,12 @@ namespace BusinessLogic.Persistence
     {
 
         public SiaseDbContext(DbContextOptions<SiaseDbContext> options) : base(options) { }
-
+        
+        public DbSet<Renta> Renta {get; set;}
+        public DbSet<Bicicleta> Bicicleta {get; set;}
         public DbSet<Materia> Materia { get; set; }
         public DbSet<Profesor> Profesor { get; set; }
-        public DbSet<Carrera> Carrera { get; set; }
+        // public DbSet<Carrera> Carrera { get; set; }
         public DbSet<BlobFile> Files {get; set;}
 
         public DbSet<ComentariosMaterias> ComentariosMaterias { get; set; }
@@ -33,9 +35,9 @@ namespace BusinessLogic.Persistence
             modelBuilder.Entity<Profesor>()
                         .HasIndex(p=> new {p.PrimerApellido, p.Nombre, p.SegundoApellido})
                         .IsUnique();
-            modelBuilder.Entity<Carrera>()
-                        .HasIndex(c=> new {c.Nombre, c.Abreviatura})
-                        .IsUnique();
+            // modelBuilder.Entity<Carrera>()
+            //             .HasIndex(c=> new {c.Nombre, c.Abreviatura})
+            //             .IsUnique();
 
         }
     }
