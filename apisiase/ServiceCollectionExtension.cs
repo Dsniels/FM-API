@@ -1,14 +1,18 @@
 ﻿using System.Reflection.Emit;
 using System.Text;
+using apisiase.Dto;
+using AutoMapper;
 using Azure.Storage.Blobs;
 using BusinessLogic.Logic;
 using BusinessLogic.Persistence;
 using Core.Entities;
 using Core.Interfaces;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -27,13 +31,16 @@ namespace apisiase
             services.AddDbContext<SiaseDbContext>(opt => opt.UseSqlServer(connectionString));
             services.AddDbContext<SeguridadDbContext>(opt => opt.UseSqlServer(IdentiryConnectionString));
             services.AddProblemDetails();
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped(b => new BlobServiceClient(blobConnectionString));
             services.AddScoped<IBlobRepository, BlobRepository>();
+            // services.AddScoped<IMapper, Mapper>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IGenericSecurityRepository<>), typeof(GenericSecurityRepository<>));
             services.AddTransient<IMateriasRepository, MateriasRepository>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddTransient<IRentaRepository, RentaReporitory>();
+            services.TryAddSingleton<ISystemClock, SystemClock>();
 
 
 
