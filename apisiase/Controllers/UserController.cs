@@ -36,36 +36,45 @@ namespace apisiase.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<ActionResult> Login(LoginDto loginDto){
+        public async Task<ActionResult> Login(LoginDto loginDto)
+        {
             var usuario = await _userManager.FindByEmailAsync(loginDto.Email);
 
-            if(usuario == null){
+            if (usuario == null)
+            {
                 return NotFound();
             }
 
             var resultado = await _signInManage.CheckPasswordSignInAsync(usuario, loginDto.Password, false);
 
-            if(!resultado.Succeeded){
+            if (!resultado.Succeeded)
+            {
                 return Unauthorized("No autorizado");
             }
 
 
             var roles = await _userManager.GetRolesAsync(usuario);
+            foreach (var role in roles)
+            {
+                System.Console.WriteLine(role);
 
-            return Ok(new UsuarioDto{
+            }
+            return Ok(new UsuarioDto
+            {
                 Nombre = usuario.Nombre,
                 PrimerApellido = usuario.PrimerApellido,
                 SegundoApellido = usuario.SegundoApellido,
                 Id = usuario.Id,
                 Email = usuario.Email,
-                Token = _tokenService.CreateToken(usuario,roles),
+                Token = _tokenService.CreateToken(usuario, roles),
                 Admin = roles.Contains("ADMIN") ? true : false
             });
         }
 
         [Authorize]
         [HttpGet("GetAll")]
-        public async Task<IActionResult> GetUsuarios(){
+        public async Task<IActionResult> GetUsuarios()
+        {
             System.Console.WriteLine(User.Claims.Select(x => $"{x.Type} : {x.Value}"));
             var usuarios = await _genericSecurityRepository.GetAllAsync();
 
