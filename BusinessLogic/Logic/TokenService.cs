@@ -28,10 +28,11 @@ public class TokenService : ITokenService
             new Claim(JwtRegisteredClaimNames.FamilyName, usuario.PrimerApellido),
             new Claim("matricula", usuario.Matricula.ToString())
         };
-
+        System.Console.WriteLine("Dn");
         if(roles != null && roles.Count > 0){
             foreach(var role in roles){
                 claims.Add(new Claim(ClaimTypes.Role, role));
+                System.Console.WriteLine(role);
             }
         }
 
