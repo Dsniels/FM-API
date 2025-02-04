@@ -50,7 +50,9 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseEndpoints(e=>{
+    e.MapControllers();
+});
 app.MapHub<ChatHub>("/GlobalChat");
 app.UseHttpsRedirection();
 app.Run();

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection.Emit;
+using System.Text;
 using Azure.Storage.Blobs;
 using BusinessLogic.Logic;
 using BusinessLogic.Persistence;
@@ -50,6 +51,8 @@ namespace apisiase
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
+                
+                options.UseSecurityTokenValidators = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -59,6 +62,7 @@ namespace apisiase
                     ValidateAudience = false
                 };
             });
+            services.AddAuthorization();
 
 
 
