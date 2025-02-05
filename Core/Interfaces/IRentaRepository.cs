@@ -8,7 +8,8 @@ public interface IRentaRepository
 {
     Task<IReadOnlyList<Renta>> GetRentas();
     Task<Renta> GetRentaByID(int id);
-    Task<IReadOnlyList<Renta>> GetRentaByUsuarioID(int userID);
+    Task<IReadOnlyList<Renta>> GetRentaByUsuarioID(string userID);
+
 
     
 

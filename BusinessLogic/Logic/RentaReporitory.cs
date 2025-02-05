@@ -23,7 +23,7 @@ public class RentaReporitory : IRentaRepository
         return await _context.Renta.FirstOrDefaultAsync(r => r.Id == id);
     }
 
-    public async Task<IReadOnlyList<Renta>> GetRentaByUsuarioID(int userID)
+    public async Task<IReadOnlyList<Renta>> GetRentaByUsuarioID(string userID)
     {
         return await _context.Renta.Where(r=>r.UsuarioID == userID).ToListAsync();
     }

@@ -9,8 +9,8 @@ public class RentaWithUserAndBikeSpecification : BaseSpecification<Renta>
     public RentaWithUserAndBikeSpecification(RentaSpecificationParams rentaParams) : base(
         x =>
         (string.IsNullOrEmpty(rentaParams.Search) || x.Usuario.Nombre.Contains(rentaParams.Search)) &&
-        (rentaParams.UserID.HasValue || x.UsuarioID == rentaParams.UserID)&&
-        (rentaParams.BicicletaID.HasValue || x.BicicletaID == rentaParams.BicicletaID)
+        (string.IsNullOrEmpty(rentaParams.UserID) || x.UsuarioID == rentaParams.UserID)&&
+        (!rentaParams.BicicletaID.HasValue || x.BicicletaID == rentaParams.BicicletaID)
     )
     {
         AddInclude(r=>r.Usuario);
