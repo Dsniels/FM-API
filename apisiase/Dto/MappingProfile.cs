@@ -10,6 +10,7 @@ public class MappingProfile :Profile
         {
 
             CreateMap<Usuario, UsuarioDto>().ReverseMap();
+            CreateMap<RentaDto, Renta>().ReverseMap();
 
         }
 
