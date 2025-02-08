@@ -24,7 +24,7 @@ public class SecurityDataSeed
 
             };
 
-            await userManager.CreateAsync(usuario, "DanielSalazar271278$");
+            await userManager.CreateAsync(usuario, "DanielSalazar11111$");
         }
 
 
