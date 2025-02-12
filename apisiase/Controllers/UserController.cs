@@ -1,4 +1,5 @@
 using apisiase.Dto;
+using apisiase.Extensions;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace apisiase.Controllers
 {
@@ -68,7 +70,8 @@ namespace apisiase.Controllers
                 Matricula = usuario.Matricula,
                 Email = usuario.Email,
                 Token = _tokenService.CreateToken(usuario, roles),
-                Admin = roles.Contains("ADMIN") ? true : false
+                Admin = roles.Contains("ADMIN") ? true : false,
+                Alumno = roles.Contains("ALUMNO") ? true : false
             });
         }
 
@@ -110,7 +113,7 @@ namespace apisiase.Controllers
 
 
         [Authorize]
-        [HttpDelete("DeleteByID")]
+        [HttpDelete("DeleteByID/{ID}")]
         public async Task<IActionResult> DeleteUser(string ID)
         {
             var usuario = await _userManager.FindByIdAsync(ID);
@@ -132,7 +135,7 @@ namespace apisiase.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Roles = "ADMIN")]
         [HttpPut("Role/{id}")]
         public async Task<ActionResult<UsuarioDto>> AssignRole(string id, RoleDto roleParams)
         {
@@ -209,11 +212,72 @@ namespace apisiase.Controllers
 
         }
 
+        [Authorize]
+        [HttpGet("me")]
+        public async Task<ActionResult> GetMyProfile()
+        {
+            var usuario = await _userManager.BuscarUsuarioAsync(HttpContext.User);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
 
-
-
+            return Ok(usuario);
+        }
 
         [Authorize]
+        [HttpGet("Profile")]
+        public async Task<ActionResult> GetByID([FromQuery] string Id)
+        {
+            var usuario = await _userManager.FindByIdAsync(Id);
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(usuario);
+        }
+
+        [Authorize]
+        [HttpPut("UpdateMyProfile")]
+        public async Task<ActionResult> UpdateMyProfile(Usuario dataSet)
+        {
+            var usuario = await _userManager.BuscarUsuarioAsync(HttpContext.User);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            dataSet.Id = usuario.Id;
+            var result = await _userManager.UpdateAsync(dataSet);
+            if (result == null)
+            {
+                return BadRequest();
+            }
+
+
+            return Ok(dataSet);
+        }
+
+
+        [Authorize(Roles = "ADMIN")]
+        [HttpPut("UpdateUser")]
+        public async Task<ActionResult> UpdateUserInfo([FromQuery] string userId, Usuario DataSet){
+
+            DataSet.Id = userId;
+            var result = await _userManager.UpdateAsync(DataSet);
+            if(result == null){
+                return BadRequest();
+            }
+
+            return Ok(DataSet);
+
+        }
+
+
+
+
+        [Authorize(Roles = "ADMIN")]
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetUsuarios()
         {
