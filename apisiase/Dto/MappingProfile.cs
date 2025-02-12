@@ -11,6 +11,7 @@ public class MappingProfile :Profile
 
             CreateMap<Usuario, UsuarioDto>().ReverseMap();
             CreateMap<RentaDto, Renta>().ReverseMap();
+            CreateMap<RentaDetailDto, Renta>().ReverseMap();
 
         }
 
